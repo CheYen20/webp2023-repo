@@ -2,14 +2,11 @@
     <div id="container" tableindex="0"></div>
 </body>
 <script>
+    //英文打字遊戲
     var container = document.getElementById("container");
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
     window.onload = function(){
-        var createnumber = Math.floor(Math.random() * 2+1);
-        for (let i = 0; i < createnumber; i++) {
-            var randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-            container.textContent += randomCharacter;
-        }
+        createNewCharater();
     }
     window.addEventListener("keyup",function(e){
         console.log(e.key);
@@ -24,16 +21,21 @@
             container.textContent +=e.key;
         }
         var createnumber = Math.floor(Math.random() * 2+1);
-        for (let i = 0; i < createnumber; i++) {
-            var randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-            container.textContent += randomCharacter;
-        }
+        createNewCharater();
     });
     window.addEventListener("keypress",function(e){
         if (e.key == container.textContent.substring(0,1)){
             container.textContent = container.textContent.substring(1,container.textContent.length);
         }
      });
+     //func產生英文字母
+     createNewCharater = function(){
+        var createnumber = Math.floor(Math.random() * 2+1);
+        for (let i = 0; i < createnumber; i++) {
+            var randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
+            container.textContent += randomCharacter;
+        }
+     }
 </script>
   
   

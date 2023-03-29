@@ -7,6 +7,7 @@
     window.onload = function(){
         container.textContent = addNewCharater(3);
     }
+
     window.addEventListener("keyup", function(e){
         var firstone = container.textContent.substring(0, 1);
         //重新開始
@@ -28,6 +29,13 @@
         container.textContent += addNewCharater(3);
     });
 
+    window.addEventListener("keydown", function(e){
+        var firstone = container.textContent.substring(0, 1);
+        if(e.key == firstone){
+            var tmp = "<span style=\"color:red;font-size:3cm;\";>" + firstone + "</span>";
+            container.innerHTML = tmp + container.textContent.substring(1,container.length);
+        }
+    });
     //func產生英文字母
     addNewCharater = function(x){
         var n = Math.floor(Math.random()*x)+1;
@@ -37,6 +45,7 @@
                 return str;
         }
      };
+
 </script>
   
   

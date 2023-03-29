@@ -4,38 +4,39 @@
 <script>
     //英文打字遊戲
     var container = document.getElementById("container");
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
     window.onload = function(){
-        createNewCharater();
+        container.textContent = addNewCharater(3);
     }
-    window.addEventListener("keyup",function(e){
-        console.log(e.key);
+    window.addEventListener("keyup", function(e){
+        var firstone = container.textContent.substring(0, 1);
+        //重新開始
         if(e.key =='Escape'){
             container.textContent = "";
         }
+        //第一個字打不出來
         else if(e.key == 'Backspace'){
             var str = container.textContent;
-            container.textContent = str.substring(0,str.length-1);
+            container.textContent = str.substring(1,container.textContent.length);
+        }
+        //打對了
+        else if(e.key == firstone){
+            container.textContent = container.textContent.substring(1, container.textContent.length);
         }
         else{
-            container.textContent +=e.key;
+            container.textContent += e.key;
         }
-        var createnumber = Math.floor(Math.random() * 2+1);
-        createNewCharater();
+        container.textContent += addNewCharater(3);
     });
-    window.addEventListener("keypress",function(e){
-        if (e.key == container.textContent.substring(0,1)){
-            container.textContent = container.textContent.substring(1,container.textContent.length);
+
+    //func產生英文字母
+    addNewCharater = function(x){
+        var n = Math.floor(Math.random()*x)+1;
+        var str = '';
+        for(let i=0; i<n; i++){
+                str += String.fromCharCode(97+Math.floor(Math.random()*26));
+                return str;
         }
-     });
-     //func產生英文字母
-     createNewCharater = function(){
-        var createnumber = Math.floor(Math.random() * 2+1);
-        for (let i = 0; i < createnumber; i++) {
-            var randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-            container.textContent += randomCharacter;
-        }
-     }
+     };
 </script>
   
   

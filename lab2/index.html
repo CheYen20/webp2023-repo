@@ -32,6 +32,8 @@
     var d = ["資工系", "資工系", "資工系", "資工系", "資工系", "資工系"];
     var c = ["物件導向軟體設計", "計算機網路實驗", "作業系統實務", "生物統計", "通訊系統", "軟硬體專題(2)"];
     var t = ["黃崇源", "李春良", "張哲維", "陳光武", "陳仁輝", "魏志達"];
+    var count = c.length;
+    //動態新增內容
     function addNewData(){
         var myTable = document.getElementById("csie");
         var rowCount = c.length;
@@ -43,7 +45,7 @@
             row.insertCell(2).innerHTML = t[i];
         }
     }
-    var count = c.length;
+    //動態刪除內容
     function deleteOldData(){
         var myTable = document.getElementById("csie");
         if(count>0){
@@ -51,9 +53,22 @@
             count--;
         }
     }
+    //Timer
+    setInterval(myfunc, 1000, "demo");
+    function myfunc(eid){
+        let d = new Date();
+        document.getElementById(eid).innerHTML = "目前時間：";
+        document.getElementById(eid).innerHTML += d.getHours() +":";
+        document.getElementById(eid).innerHTML += d.getMinutes() +":";
+        document.getElementById(eid).innerHTML += d.getSeconds();
+    }
+    setTimeout(function run(){
+        myfunc("demo");
+    }, 1000);
   </script>
   <body>
-    <h1>資工選課表</h1>
+    <h4 id="demo"></h4>
+    <h1 id="demo">資工選課表</h1>
     <table id="csie" class="table table-striped table-hover">
         <tr>
             <th>開課單位</th>

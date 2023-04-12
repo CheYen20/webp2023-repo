@@ -36,11 +36,20 @@
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200) {
                 dataset = JSON.parse(this.responseText);
-                //console.log(dataset);
-                add_new_img(dataset);
+ 
             }
         };
         function getimg(){
+            var mypicture2 = document.getElementById("gallery2");
+            var img2 = document.createElement("img");
+            img2.src = dataset[0]["urls"]["thumb"];
+            mypicture2.appendChild(img2);
+            
+            var mypicture3 = document.getElementById("gallery3");
+            var img3 = document.createElement("img");
+            img3.src = dataset[0]["urls"]["sponsorship"]["sponsor"]["profile_image"]["small"];
+            mypicture3.appendChild(img3);
+
 
         }
 
@@ -50,19 +59,14 @@
             img1.src = dataset[0]["urls"]["regular"];
             mypicture1.appendChild(img1);
             
-            var mypicture2 = document.getElementById("gallery2");
-            var img2 = document.createElement("img");
-            img2.src = dataset[0]["links"]["html"];
-            mypicture2.appendChild(img2);
-            
 
         }
     </script>
     <body>
         <button onclick="getimg()">Get IMG</button>
         <div id='gallery' class="gallery">
-            <div id='gallery1' class="gallery img"></div>
             <div id='gallery2' class="gallery img:hover"></div>
+            <div id='gallery3' class="gallery img:nth-child(2)"></div>
         </div>
         
     </body>

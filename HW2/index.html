@@ -27,13 +27,6 @@
       margin: 0;
       padding: 0;
     }
-    button{
-      margin: 50px;
-      border-radius: 50px;
-      padding: 10px 10px;
-      transform: scale(1);
-      border: none;
-    }
 </style>
 <script>
     var openUrl =
@@ -48,15 +41,28 @@
             addNewData(dataset);
         }
     };
-
+    var paging = 1;
+    
     function addNewData(dataset){
         var myTable = document.getElementById("myTable");
+        var page = document.getElementById("paging");
+        page.innerHTML = paging + " / 111 頁"
         dataset.forEach(function(data, index) {
-            if(index<10){
-                var row = myTable.insertRow(-1);
-                row.insertCell(0).innerHTML = data['title'];
-                row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
-                row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+            if(paging == 1){
+                if(index<10){
+                    var row = myTable.insertRow(-1);
+                    row.insertCell(0).innerHTML = data['title'];
+                    row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
+                    row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+                }
+            }
+            if(paging == 2){
+                if(index>=10 && index<20){
+                    var row = myTable.insertRow(-1);
+                    row.insertCell(0).innerHTML = data['title'];
+                    row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
+                    row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+                }
             }
             
         });
@@ -64,9 +70,9 @@
 </script>
 <body>
     <h1>景點觀光展覽資訊</h1>
-    <button id="btnP">上一頁</button>
-        1 /111 頁
-    <button id="btnN">下一頁</button>
+    <button id="btnP" onclick="prevPage()">上一頁</button>
+        <div id="paging" style="display:inline;"></div>
+    <button id="btnN" onclick="nextPage()">下一頁</button>
 
     <script>
 
@@ -92,7 +98,18 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
-            
+        }
+        function nextPage(){
+            if(paging<111){
+                paging++;
+                addNewData(dataset);
+            }
+        }
+        function prevPage(){
+            if(paging>1){
+                paging--;
+                addNewData(dataset);
+            }
         }
     </script>
 </body>

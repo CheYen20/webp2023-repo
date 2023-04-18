@@ -49,9 +49,8 @@
         page.innerHTML = paging + " / 111 頁"
         dataset.forEach(function(data, index) {
             if(paging == 1){
-
                 if(index<10){
-                    
+                  
                     start++;
                     var row = myTable.insertRow(-1);
                     row.insertCell(0).innerHTML = data['title'];
@@ -70,8 +69,6 @@
                     }
                 }
             }
-
-            
         });
     }
 </script>
@@ -80,11 +77,6 @@
     <button id="btnP" onclick="prevPage()">上一頁</button>
         <div id="paging" style="display:inline;"></div>
     <button id="btnN" onclick="nextPage()">下一頁</button>
-
-    <script>
-
-    </script>
-
     <form>
         關鍵字：<input type="text" id="myInput" placeholder="搜尋..." onchange="update()">
     </form>
@@ -113,7 +105,7 @@
             }
         }
         function prevPage(){
-            if(paging>1){
+            if(paging>2){
                 paging--;
                 addNewData(dataset);
             }

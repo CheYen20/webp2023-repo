@@ -52,10 +52,13 @@
     function addNewData(dataset){
         var myTable = document.getElementById("myTable");
         dataset.forEach(function(data, index) {
-            var row = myTable.insertRow(-1);
-            row.insertCell(0).innerHTML = data['title'];
-            row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
-            row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+            if(index<10){
+                var row = myTable.insertRow(-1);
+                row.insertCell(0).innerHTML = data['title'];
+                row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
+                row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+            }
+            
         });
     }
 </script>

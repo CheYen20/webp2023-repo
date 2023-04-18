@@ -1,6 +1,8 @@
 
 <head>
     <title>景點觀光展覽資訊</title>
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <style>
     table { 
@@ -21,6 +23,26 @@
         background-color: #04AA6D; 
         color: white; 
     } 
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    button{
+      margin: 50px;
+      border-radius: 50px;
+      padding: 10px 10px;
+      transform: scale(1);
+      border: none;
+    }
 </style>
 <script>
     var openUrl =
@@ -37,7 +59,7 @@
     };
 
     function addNewData(dataset){
-        var myTable = document.getElementById("csie");
+        var myTable = document.getElementById("myTable");
         dataset.forEach(function(data, index) {
             var row = myTable.insertRow(-1);
             row.insertCell(0).innerHTML = data['title'];
@@ -48,13 +70,75 @@
 </script>
 <body>
     <h1>景點觀光展覽資訊</h1>
-    <table id="csie" class="table table-striped table-hover">
+    <div class="container">
+        <button id="btnP">&lt;&lt;Prev</button>
+            <div><button id="btn1">1</button></div>
+            <div><button id="btn2">2</button></div>
+            <div><button id="btn3">3</button></div>
+        <button id="btnN">Next&gt;&gt;</button>
+    </div>
+    <script>
+        let x = 1;
+        let y = 2;
+        let z = 3;
+        let prev = document.getElementById('btnP');
+        let btn1 = document.getElementById('btn1');
+        let btn2 = document.getElementById('btn2');
+        let btn3 = document.getElementById('btn3');
+        let next = document.getElementById('btnN');
+        let table = document.getElementById('myTable');
+        let tr = document.querySelectorAll('.tr');
+
+        for(i=0; i<(5-(tr.length%5)); i++){
+            table.insertAdjacentHTML('beforeend', '<tr class = "tr Hide"><th></th><td></td><td></td><td></td><tr>');
+        }
+
+        let trr = document.querySelectorAll('.tr');
+
+        function ascend(){
+            for(i=(x-1)*5; i<(x*5); i++){
+                trr[i].classList.toggle("Hide");
+            }
+            for(i=(x-2)*5; i<((x-1)*5); i++){
+                trr[i].classList.toggle('Hide');
+            }
+        }
+
+        function condition(){
+          btn1.innerHTML = ('<button id="btn' + x + '">{' + x + '}</button>');
+          btn2.innerHTML = ('<button id="btn' + y + '">{' + y + '}</button>');
+          btn3.innerHTML = ('<button id="btn' + z + '">{' + z + '}</button>');
+        }
+        next.addEventListener("click", function(){
+            x++;
+            y++;
+            z++;
+            condition();
+        })
+    </script>
+    <form>
+        <input type="text" id="myInput" placeholder="搜尋..." onchange="update()">
+    </form>
+    <table id="myTable" class="table table-striped table-hover">
         <tr>
             <th>名稱</th>
             <th>地點</th>
             <th>票價</th>
         </tr>
     </table>
-    <button onclick="delOldData()">delOldData</button>
+    <script>
+        function update(){
+        
+            $("#myInput").on("keyup", function(){
+                //抓關鍵字
+                var value = $(this).val().toLowerCase();
+    
+                //抓table
+                $("#myTable tr").filter(function(){
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            
+        }
+    </script>
 </body>
-

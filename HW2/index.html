@@ -42,28 +42,35 @@
         }
     };
     var paging = 1;
-    
+    var start = 1;
     function addNewData(dataset){
         var myTable = document.getElementById("myTable");
         var page = document.getElementById("paging");
         page.innerHTML = paging + " / 111 頁"
         dataset.forEach(function(data, index) {
             if(paging == 1){
+
                 if(index<10){
+                    
+                    start++;
                     var row = myTable.insertRow(-1);
                     row.insertCell(0).innerHTML = data['title'];
                     row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
                     row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
                 }
             }
-            if(paging == 2){
-                if(index>=10 && index<20){
-                    var row = myTable.insertRow(-1);
-                    row.insertCell(0).innerHTML = data['title'];
-                    row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
-                    row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+            for(i=2;i<=111;i++){
+                if(paging == i){
+                    if(index>=((i*10)-10) && index<(i*10)){
+                        myTable.deleteRow(1);
+                        var row = myTable.insertRow(-1);
+                        row.insertCell(0).innerHTML = data['title'];
+                        row.insertCell(1).innerHTML = data['showInfo'][0]['location'];
+                        row.insertCell(2).innerHTML = data['showInfo'][0]['price'];
+                    }
                 }
             }
+
             
         });
     }

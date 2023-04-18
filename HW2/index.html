@@ -68,6 +68,7 @@
     <script>
 
     </script>
+
     <form>
         關鍵字：<input type="text" id="myInput" placeholder="搜尋..." onchange="update()">
     </form>
@@ -80,11 +81,9 @@
     </table>
     <script>
         function update(){
-        
             $("#myInput").on("keyup", function(){
                 //抓關鍵字
                 var value = $(this).val().toLowerCase();
-    
                 //抓table
                 $("#myTable tr").filter(function(){
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)

@@ -42,12 +42,13 @@
         }
     };
     var paging = 1;
-    var start = 1;
+    var start = 0;
     function addNewData(dataset){
         var myTable = document.getElementById("myTable");
         var page = document.getElementById("paging");
         page.innerHTML = paging + " / 111 頁"
         dataset.forEach(function(data, index) {
+            
             if(paging == 1){
                 if(index<10){
                   
@@ -89,6 +90,8 @@
     </table>
     <script>
         function update(){
+            start = 1;
+            addNewData(dataset);
             $("#myInput").on("keyup", function(){
                 //抓關鍵字
                 var value = $(this).val().toLowerCase();
@@ -97,6 +100,7 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+            start =0;
         }
         function nextPage(){
             if(paging<111){

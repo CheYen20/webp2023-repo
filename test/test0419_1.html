@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Fetch get
+            /*
+            const uri = 
+                `https://script.google.com/macros/s/AKfycbw5PnzwybI_VoZaHz65TpA5DYuLkxIF-
+                HUGjJ6jRTOje0E6bVo/exec?name=${name}&age=${age}`;
+        
+            fetch(uri, {method: 'GET'})
+            .then(res => {
+                return res.text();
+            }).then(result => {
+                document.getElementById('h1').innerText = result;
+            });
+        
+            fetch('https://randomuser.me/api/')
+            .then(res => {
+                return res.json();
+            }).then(result => {
+                console.log(result);
+                var user_name = result.results[0].name;
+                var str = `姓名:${user_name['title']} ${user_name['first']}`;
+                str += ` ${user_name['last']} 您好！`;
+                document.getElementById('h2').innerText = str;
+            })
+        
+            let url = 
+                'https://images.unsplash.com/photo-1513313778780-9ae4807465f0?auto=format&fit=crop&w=200&q=80';
+            fetch(url)
+                .then((response) => {
+                    return response.blob();
+                })
+                .then((imageBlob) => {
+                    let img = document.createElement('IMG');
+                    document.getElementById('newImg').appendChild(img);
+                    img.src = URL.createObjectURL(imageBlob);
+                })
+            */
+        
+            fetch('https://reqres.in/api/articles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: 'Fetch POST Request Example' })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById('post1').innerText = data.id);
+        
+        //Fetch post
+            /*
+            const post_uri = 
+                'https://script.google.com/macros/s/AKfycbxXH6aPsldTBeS41WRMnJEA5Xstc7cYMj6YimDO2Al7H6DkJZiz/exec';
+            fetch(post_uri, {
+                method: 'POST',
+                body: encodeURI(JSON.stringify({
+                    name: 'IU',
+                    age: 28
+                })),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+                }
+            })
+            .then(res => {
+                return res.json();
+            }).then(result => {
+                document.getElementById('post').innerText = result['text'];
+                console.log(result);
+            })
+            */
+    </script>
+</body>
+</html>

@@ -29,6 +29,7 @@
     }
 </style>
 <script>
+    /*
     var openUrl =
         "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6";
     var xhr = new XMLHttpRequest();
@@ -41,6 +42,20 @@
             addNewData(dataset);
         }
     };
+    */
+    var openUrl =
+        "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6"
+    var dataset;
+    fetch(openUrl, {
+            method: 'GET'
+        })
+        .then(res => {
+            return res.json();
+        }).then(result => {
+            dataset = result;
+            addNewData(result);
+        });
+
     var paging = 1;
     var start = 0;
     function addNewData(dataset){

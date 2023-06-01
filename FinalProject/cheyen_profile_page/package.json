@@ -1,5 +1,5 @@
 {
-  "name": "Elisa-website-react",
+  "name": "CY-website-react",
   "version": "1.1.0",
   "private": true,
   "main": "src/index.js",
@@ -31,6 +31,7 @@
       "react-app/jest"
     ]
   },
+
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -41,5 +42,6 @@
     "last 1 firefox version",
     "last 1 safari version"
   ],
-  "homepage": "https://blue1152.github.io/elisa_profile_page"
+  "homepage": "https://cheyen20.github.io/webp2023-repo/FinalProject"
+  
 }
